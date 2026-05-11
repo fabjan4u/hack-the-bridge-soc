@@ -1,0 +1,306 @@
+:root {
+    --bg-dark: #090a0f;
+    --panel-bg: rgba(16, 20, 31, 0.7);
+    --border-glow: rgba(0, 255, 255, 0.2);
+    --text-main: #e0e6ed;
+    --text-dim: #7a889b;
+    --accent-blue: #00f0ff;
+    --accent-red: #ff2a2a;
+    --accent-yellow: #ffcc00;
+    --accent-green: #00ff66;
+    --glass-blur: blur(12px);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Cyber Grid Background */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-blue);
+    box-shadow: 0 5px 25px rgba(0, 240, 255, 0.1);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+.header h1 span {
+    color: var(--accent-blue);
+    font-size: 1rem;
+}
+
+.time-display {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon Top Border */
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+    opacity: 0.5;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.panel {
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.panel h2 {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+/* PLC Status Section */
+.status-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.glow-orb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px currentColor, inset 0 0 20px currentColor;
+}
+
+#plc-status {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+/* State Colors */
+.state-run {
+    color: var(--accent-green);
+}
+.state-stop {
+    color: var(--accent-red);
+    animation: blink 1s infinite alternate;
+}
+.state-error {
+    color: var(--accent-yellow);
+}
+
+@keyframes blink {
+    from { opacity: 1; text-shadow: 0 0 10px var(--accent-red); }
+    to { opacity: 0.4; text-shadow: 0 0 20px var(--accent-red); }
+}
+
+.telemetry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.data-point {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.02);
+    padding: 10px 15px;
+    border-left: 3px solid var(--accent-blue);
+}
+
+.data-point .label {
+    color: var(--text-dim);
+}
+
+.data-point .value {
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+}
+
+/* Info Panel */
+.info-panel p {
+    margin-bottom: 10px;
+}
+
+.info-panel code {
+    display: block;
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+    font-family: monospace;
+    color: var(--accent-green);
+    border-left: 2px solid var(--text-dim);
+    white-space: pre-wrap;
+}
+
+/* Alert Feed */
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.alert-header h2 {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pulse {
+    color: var(--accent-red);
+    font-weight: bold;
+    font-size: 0.9rem;
+    animation: pulse-anim 2s infinite;
+}
+
+@keyframes pulse-anim {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.alert-feed {
+    height: 550px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar */
+.alert-feed::-webkit-scrollbar {
+    width: 6px;
+}
+.alert-feed::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+}
+.alert-feed::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 3px;
+}
+
+.alert-item {
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--text-dim);
+    border-radius: 0 4px 4px 0;
+    animation: slideIn 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.alert-item.severity-high {
+    border-left-color: var(--accent-red);
+    background: linear-gradient(90deg, rgba(255,42,42,0.1), transparent);
+}
+
+.alert-item.severity-medium {
+    border-left-color: var(--accent-yellow);
+}
+
+.alert-item.severity-low {
+    border-left-color: var(--accent-blue);
+}
+
+.alert-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+.alert-source {
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.alert-message {
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-dim);
+    font-style: italic;
+    border-left: none;
+    background: transparent;
+}

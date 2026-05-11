@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siemens OT Security Operations Center</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header class="header glass-panel">
+            <h1>SIEMENS OT-SOC <span>// SYSTEM MONITORING</span></h1>
+            <div class="time-display" id="clock">00:00:00</div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Left Column: PLC Status -->
+            <div class="left-column">
+                <section class="panel glass-panel">
+                    <h2>PLC STATUS</h2>
+                    <div class="status-indicator" id="plc-status-container">
+                        <div class="glow-orb" id="plc-orb"></div>
+                        <h3 id="plc-status">CONNECTING...</h3>
+                    </div>
+                    <div class="telemetry">
+                        <div class="data-point">
+                            <span class="label">SPINDLE SPEED</span>
+                            <span class="value" id="plc-speed">0 RPM</span>
+                        </div>
+                        <div class="data-point">
+                            <span class="label">CORE TEMP</span>
+                            <span class="value" id="plc-temp">0.0 °C</span>
+                        </div>
+                        <div class="data-point">
+                            <span class="label">LAST SYNC</span>
+                            <span class="value" id="plc-last-update">--:--:--</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel glass-panel info-panel">
+                    <h2>TEAM BLUE OPS</h2>
+                    <p>Integrate your scripts via API:</p>
+                    <code>POST /api/report<br>{<br>&nbsp;&nbsp;"severity": "HIGH",<br>&nbsp;&nbsp;"source": "Firewall",<br>&nbsp;&nbsp;"message": "Port scan detected"<br>}</code>
+                </section>
+            </div>
+
+            <!-- Right Column: Alert Feed -->
+            <div class="right-column">
+                <section class="panel glass-panel alert-panel">
+                    <div class="alert-header">
+                        <h2>LIVE SECURITY ALERTS</h2>
+                        <span class="pulse">LIVE</span>
+                    </div>
+                    <div class="alert-feed" id="alert-feed">
+                        <!-- Alerts will be injected here via JS -->
+                        <div class="alert-item empty-state">
+                            Waiting for telemetry...
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
