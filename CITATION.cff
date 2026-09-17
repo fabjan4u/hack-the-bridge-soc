@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software in research or education, please cite it as below."
+authors:
+  - family-names: Cras
+    given-names: Fabian
+    affiliation: "mboRijnland / CIV Smart Technology"
+title: "Hack the Bridge: Industrial Control Systems (ICS/OT) SOC Simulator"
+version: 1.0.0
+date-released: 2026-09-17
+url: "https://github.com/fabjan4u/hack-the-bridge-soc"

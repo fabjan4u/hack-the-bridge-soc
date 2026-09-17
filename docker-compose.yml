@@ -1,0 +1,9 @@
+services:
+  soc-dashboard:
+    build: .
+    container_name: hack-the-bridge-soc
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
